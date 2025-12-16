@@ -1,0 +1,137 @@
+CREATE TABLE Authors (
+    author_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE Books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(200),
+    author_id INT,
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
+);
+
+Primary Key
+
+يحدد كل صف في الجدول
+
+لا يتكرر
+
+لا يكون NULL
+
+واحد فقط في الجدول
+
+ Unique
+
+يمنع التكرار
+
+ممكن يكون NULL
+
+ممكن أكثر من واحد في الجدول
+-----------------------------
+Customers
+
+| customer_id | customer_name |
+
+Orders
+
+| order_id | customer_id |
+
+Products
+
+| product_id | product_name | product_price |
+
+Order_Details
+
+| order_id | product_id |
+
+
+
+Partial Dependency: العمود يعتمد على جزء من المفتاح المركب فقط.
+مثال: student_name يعتمد على student_id في جدول Student_Course.
+Transitive Dependency: العمود يعتمد على عمود آخر غير المفتاح الأساسي.
+مثال: dept_name يعتمد على dept_id في جدول Students.
+------------------------------
+CREATE TABLE students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(50),
+    birth_date DATE
+    
+);
+INSERT INTO students (id, name, birth_date, email)
+VALUES (1, 'Ali', '2001-05-10', 'ali@gmail.com');
+
+SELECT *
+FROM students
+WHERE birth_date > '2000-01-01'
+ORDER BY name;
+
+UPDATE students
+SET email = 'ali.new@gmail.com'
+WHERE id = 1;
+
+DELETE FROM students
+WHERE id = 2;
+
+-------------
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    city VARCHAR(100)
+);
+
+CREATE TABLE orders (
+    id INT PRIMARY KEY,
+    user_id INT,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+CREATE TABLE newsletter_subscribers (
+    email VARCHAR(100)
+);
+SELECT city, COUNT(*) AS total_users
+FROM users
+GROUP BY city
+HAVING COUNT(*) > 5;
+
+SELECT u.id, u.name
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+WHERE o.id IS NULL;
+
+SELECT u.id, u.name, AVG(o.amount) AS avg_order
+FROM users u
+JOIN orders o ON u.id = o.user_id
+GROUP BY u.id, u.name;
+
+SELECT u.id, u.name, SUM(o.amount) AS total_spent
+FROM users u
+JOIN orders o ON u.id = o.user_id
+GROUP BY u.id, u.name
+HAVING SUM(o.amount) > (
+    SELECT AVG(amount)
+    FROM orders
+);
+
+SELECT email FROM newsletter_subscribers
+UNION
+SELECT email FROM users;
+--------------------------------------------
+Data: Raw, unprocessed facts, figures, symbols, or observations (e.g., a temperature reading, a name, a number) that lack inherent meaning until interpreted.
+
+Information: Data that has been processed, organized, and structured, giving it context and meaning, making it useful for decision-making (e.g., a patient's temperature over time to indicate fever).
+
+Database: An organized, structured collection of data, stored electronically, designed for efficient storage, retrieval, and management (like a digital filing cabinet).
+
+DBMS (Database Management System): Software that acts as an interface between users/applications and the database, allowing for creation, maintenance, access, and control of the data (e.g., Microsoft Access, MongoDB).
+
+RDBMS (Relational Database Management System): A subset of DBMS that structures data into related tables (relations) with rows (records) and columns (fields), using SQL (Structured Query Language) for management (e.g., MySQL, Oracle, PostgreSQL)
+
+نظام المدرسة
+
+المدرسة تستخدم قاعدة بيانات لتخزين معلومات الطلاب والمعلمين والجداول الدراسية.
+تساعد القاعدة في استخراج التقارير مثل نتائج الطلاب بسرعة وسهولة.
+بهذه الطريقة تُنظم المدرسة شغلها وتقلل الأخطاء.
+
+
+
