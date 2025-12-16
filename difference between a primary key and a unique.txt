@@ -117,21 +117,22 @@ SELECT email FROM newsletter_subscribers
 UNION
 SELECT email FROM users;
 --------------------------------------------
-Data: Raw, unprocessed facts, figures, symbols, or observations (e.g., a temperature reading, a name, a number) that lack inherent meaning until interpreted.
+Data: Raw facts or numbers without meaning.
 
-Information: Data that has been processed, organized, and structured, giving it context and meaning, making it useful for decision-making (e.g., a patient's temperature over time to indicate fever).
+Information: Data that is organized and meaningful.
 
-Database: An organized, structured collection of data, stored electronically, designed for efficient storage, retrieval, and management (like a digital filing cabinet).
+Database: An organized place to store data electronically.
 
-DBMS (Database Management System): Software that acts as an interface between users/applications and the database, allowing for creation, maintenance, access, and control of the data (e.g., Microsoft Access, MongoDB).
+DBMS: Software to manage and access the database (e.g., Microsoft Access).
 
-RDBMS (Relational Database Management System): A subset of DBMS that structures data into related tables (relations) with rows (records) and columns (fields), using SQL (Structured Query Language) for management (e.g., MySQL, Oracle, PostgreSQL)
+RDBMS: A DBMS that uses tables and SQL to manage related data (e.g., MySQL, Oracle).
 
 نظام المدرسة
 
 المدرسة تستخدم قاعدة بيانات لتخزين معلومات الطلاب والمعلمين والجداول الدراسية.
 تساعد القاعدة في استخراج التقارير مثل نتائج الطلاب بسرعة وسهولة.
 بهذه الطريقة تُنظم المدرسة شغلها وتقلل الأخطاء.
+
 
 
 
